@@ -6,27 +6,22 @@ import MiniSidebar from "../../components/MiniSidebar/MiniSidebar";
 import ReactMapGL, {Marker} from "react-map-gl";
 import Map, {NavigationControl} from 'react-map-gl';
 import AppMapBoxLayout from "../../components/AppMapBoxLayout/AppMapBoxLayout";
+import SidebarDrones from "../../components/SidebarDrones/SidebarDrones";
 
 const MainLayout = () => {
+    const [selectedOption, setSelectedOption] = useState('menu');
 
     return (
-
-        // <div style={{width: '100vw', height: '100vh'}}>
-        //     <ReactMapGL
-        //         width={'100%'}
-        //         height={'100%'}
-        //         {...viewPort}
-        //         transitionDuration={'200'}
-        //         mapStyle={'mapbox://styles/nazarvergyn/clnszvr7o00jk01pl5uuj47s4'}
-        //         mapboxApiAccessToken={'pk.eyJ1IjoibmF6YXJ2ZXJneW4iLCJhIjoiY2s1djY3bjA2MDh0bTNtcXc0ODR2M2h1dSJ9.PaLSEgPewauf2KVwkv9RTQ'}
-        //     ></ReactMapGL>
-        //
-        // </div>
-
-
-
         <div className={styles.mainLayout}>
-            <MiniSidebar/>
+            <MiniSidebar
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+            />
+            <SidebarDrones/>
+
+            {/*{*/}
+            {/*    selectedOption === 'drone' && <SidebarDrones/>*/}
+            {/*}*/}
             {/*<AppMapBoxLayout/>*/}
             <AppMapBox/>
         </div>

@@ -9,8 +9,7 @@ import dronActive from '../../constants/images/miniSidebar/dron-active.png';
 import history from '../../constants/images/miniSidebar/history.png';
 import historyActive from '../../constants/images/miniSidebar/history-active.png';
 
-const MiniSidebar = () => {
-    const [selectedOption, setSelectedOption] = useState('menu');
+const MiniSidebar = ({selectedOption, setSelectedOption}) => {
 
     return (
         <div className={styles.miniSidebar}>
@@ -28,10 +27,10 @@ const MiniSidebar = () => {
                 </div>
 
                 <div
-                    onClick={() => setSelectedOption('dron')}
-                    className={`${styles.miniSidebar_options_item} ${selectedOption === 'dron' && styles.active}`}
+                    onClick={() => setSelectedOption('drone')}
+                    className={`${styles.miniSidebar_options_item} ${selectedOption === 'drone' && styles.active}`}
                 >
-                    <img src={selectedOption === 'dron' ? dronActive : dron} alt="dron icon"/>
+                    <img src={selectedOption === 'drone' ? dronActive : dron} alt="drone icon"/>
                 </div>
 
                 <div

@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "sass": "^1.69.4"
   }
 }
