@@ -5,17 +5,19 @@ import styles from './WhiteDrones.module.scss';
 import DroneInfo from "../DroneInfo/DroneInfo";
 
 const WhiteDrones = () => {
-    const {activeDrones} = useSelector(state => state.dronesHistory);
+    const {whiteDrones} = useSelector(state => state.dronesHistory);
 
-    console.log(activeDrones)
+    console.log(whiteDrones)
     return (
         <div className={styles.whiteDrones}>
             {
-                activeDrones &&
-                activeDrones.map((drone, index) => ( <DroneInfo
-                    key={index}
-                    drone={drone}
-                /> ))
+                whiteDrones &&
+                whiteDrones.map((drone, index) => (
+                    <DroneInfo
+                        type={'white'}
+                        key={index}
+                        drone={drone}
+                    />))
             }
         </div>
     );

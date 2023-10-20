@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useSelector} from "react-redux";
 
 import styles from './SidebarDrones.module.scss';
 import AllDrones from "../AllDrones/AllDrones";
@@ -8,12 +9,19 @@ import BlackDrones from "../BlackDrones/BlackDrones";
 const SidebarDrones = () => {
     const [selectedOption, setSelectedOption] = useState('All');
 
+    const {whiteDrones, blackDrones} = useSelector(state => state.dronesHistory);
+    let activeDrones = [...whiteDrones, ...blackDrones];
+
+    useEffect(() => {
+
+    }, [whiteDrones, blackDrones]);
+
     return (
         <div className={styles.sidebar}>
             <div className={styles.sidebar_top}>
                 <div className={styles.sidebar_top_titleContainer}>
                     <h1>Live Tracking</h1>
-                    <p>32 drones on radar</p>
+                    <p>{activeDrones.length} drones on radar</p>
                 </div>
 
                 <ul className={styles.sidebar_top_options}>
