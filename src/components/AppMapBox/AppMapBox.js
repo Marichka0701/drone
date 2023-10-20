@@ -262,6 +262,14 @@ const AppMapBox = () => {
             }
 
             animateMarker(0);
+
+            const randomTimeout = Math.random() * (30000 - 3000) + 3000;
+            setTimeout(() => {
+                map.removeLayer(droneId);
+                map.removeSource(droneId);
+
+                addDroneToMap(radius);
+            }, randomTimeout);
         };
 
         map.on('style.load', () => {
@@ -273,7 +281,7 @@ const AppMapBox = () => {
 
             setInterval(() => {
                 addDroneToMap(Math.random() * (0.3 - 0.09) + 0.09);
-            }, Math.random() * (30000 - 1000) + 1000);
+            }, Math.random() * (20000 - 5000) + 5000);
         })
     }, []);
 
