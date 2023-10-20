@@ -17,4 +17,9 @@
     line-height: 32px; /* 133.333% */
     letter-spacing: -0.464px;
   }
+
+  &_list {
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+  }
 }

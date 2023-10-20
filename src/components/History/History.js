@@ -11,7 +11,7 @@ const History = () => {
         <div className={styles.history}>
             <h2>Flight History</h2>
 
-            <div>
+            <div className={styles.history_list}>
                 {
                     pastDrones.map((item, index) => <HistoryItem key={index} drone={item}/>)
                 }
