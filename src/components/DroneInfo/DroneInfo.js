@@ -1,16 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import styles from './DroneInfo.module.scss';
-import drone from '../../constants/images/white-drone-info.png';
+import droneIcon from '../../constants/images/white-drone-info.png';
 
-const DroneInfo = () => {
+const DroneInfo = ({drone}) => {
+    // const {droneId, startPosition, placementTime} = drone;
+    useEffect(() => {
+
+    }, [drone])
+
     return (
         <div className={styles.droneInfo}>
             <div className={styles.droneInfo_titleContainer}>
-                <img src={drone} alt="drone icon"/>
+                <img src={droneIcon} alt="drone icon"/>
                 <div className={styles.droneInfo_titleContainer_title}>
-                    <h3>ID 843345</h3>
-                    <p>Unknown</p>
+                    <h3>{drone?.droneId}</h3>
+                    <p>Mavic JS</p>
                 </div>
             </div>
 
@@ -22,12 +27,12 @@ const DroneInfo = () => {
 
                 <div className={styles.droneInfo_info_onlineFrom}>
                     <p className={styles.subtitle}>Online from:</p>
-                    <p className={styles.info}>07:39:45 AM</p>
+                    <p className={styles.info}>{drone?.placementTime}</p>
                 </div>
 
                 <div className={styles.droneInfo_info_startedGps}>
                     <p className={styles.subtitle}>Started GPS:</p>
-                    <p className={styles.info}>74.342324, -123,324242</p>
+                    <p className={styles.info}>{drone?.startPosition?.longitude}, {drone?.startPosition?.latitude}</p>
                 </div>
             </div>
         </div>
