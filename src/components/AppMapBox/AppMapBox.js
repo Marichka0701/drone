@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './AppMapBox.scss';
@@ -61,9 +62,16 @@ const AppMapBox = () => {
                 setSelectedSensor(marker.properties.message);
             })
 
+            const popupContent = document.createElement('div');
+
+            ReactDOM.render(<ModalSensor selectedSensor={marker.properties.message} />, popupContent);
+
+            const popup = new mapboxgl.Popup({ offset: 25 }).setDOMContent(popupContent);
+
             new mapboxgl.Marker(el)
                 .setLngLat(marker.geometry.coordinates)
-                .addTo(map);
+                .addTo(map)
+                .setPopup(popup);
         }
 
         map.addControl(new mapboxgl.NavigationControl({showCompass: false}), 'bottom-right');
@@ -88,6 +96,7 @@ const AppMapBox = () => {
                 }
 
                 const droneId = `drone_${Math.random().toString(36).substring(7)}`;
+
                 const placementTime = new Date().toLocaleTimeString();
 
                 dispatch(dronesHistoryActions.setWhiteDrones({
@@ -247,12 +256,6 @@ const AppMapBox = () => {
     return (
         <>
             <div id="map" style={{width: '100%'}}/>
-
-            {modalIsOpen &&
-                <ModalSensor
-                    selectedSensor={selectedSensor}
-                    setModalIsOpen={setModalIsOpen}
-                />}
         </>
     );
 };

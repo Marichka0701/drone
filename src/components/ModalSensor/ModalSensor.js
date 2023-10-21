@@ -1,11 +1,9 @@
 import React, {useEffect} from 'react';
 
 import styles from './ModalSensor.module.scss';
-import close from '../../constants/images/close.png';
 
-const ModalSensor = ({setModalIsOpen, selectedSensor}) => {
+const ModalSensor = ({selectedSensor}) => {
     const {coordinates, height, placementTime, placementDate} = selectedSensor;
-    console.log(selectedSensor)
 
     useEffect(() => {
 
@@ -13,14 +11,7 @@ const ModalSensor = ({setModalIsOpen, selectedSensor}) => {
 
     return (
         <div className={styles.modalSensor}>
-            <div className={styles.modalSensor_titleContainer}>
-                <h2>Sensor #123</h2>
-                <img
-                    onClick={() => setModalIsOpen(false)}
-                    src={close}
-                    alt="close button icon"
-                />
-            </div>
+            <h2>Sensor #123</h2>
 
             <div className={styles.modalSensor_sensor}>
                 <div className={styles.modalSensor_sensor_position}>
