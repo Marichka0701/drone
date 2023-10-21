@@ -9,8 +9,6 @@ import sensor from '../../constants/images/sensor.png';
 import drone from '../../constants/images/black-drone.png';
 import {useDispatch, useSelector} from "react-redux";
 import {dronesHistoryActions} from "../../store/slices/dronesHistorySlice";
-import {AddWhiteDronesToMap} from "../../constants/addWhiteDrones";
-import {AddBlackDronesToMap} from "../../constants/addBlackDrones";
 import whiteDrone from "../../constants/images/white-drone.png";
 import blackDrone from "../../constants/images/black-drone.png";
 
@@ -18,6 +16,7 @@ import blackDrone from "../../constants/images/black-drone.png";
 const AppMapBox = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedSensor, setSelectedSensor] = useState({});
+
     const [activeDrone, setActiveDrone] = useState({
         droneId: null,
         durationFlight: null,
@@ -36,11 +35,11 @@ const AppMapBox = () => {
 
     useEffect(() => {
         const initialCoordinates = [71.413961, 51.140528];
-        mapboxgl.accessToken = 'pk.eyJ1IjoibmF6YXJ2ZXJneW4iLCJhIjoiY2s1djY3bjA2MDh0bTNtcXc0ODR2M2h1dSJ9.PaLSEgPewauf2KVwkv9RTQ';
+        mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
         const map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/nazarvergyn/clnszvr7o00jk01pl5uuj47s4',
+            style: process.env.REACT_APP_MAPBOX_STYLE,
             center: [71.413961, 51.140528],
             zoom: 10.28,
         });
@@ -68,169 +67,6 @@ const AppMapBox = () => {
         }
 
         map.addControl(new mapboxgl.NavigationControl({showCompass: false}), 'bottom-right');
-
-        // const addDroneToMap = (radius) => {
-        //     const astanaLatitude = 51.1 + Math.random() * (51.25 - 51.1);
-        //     const astanaLongitude = 71.2 + Math.random() * (71.45 - 71.2);
-        //
-        //     const pointAroundAstana = (angle) => {
-        //         const newLatitude = astanaLatitude + Math.cos(angle) * radius;
-        //         const newLongitude = astanaLongitude + Math.sin(angle) * radius;
-        //
-        //         return {
-        //             'type': 'Point',
-        //             'coordinates': [newLongitude, newLatitude]
-        //         };
-        //     }
-        //
-        //     const droneId = `drone_${Math.random().toString(36).substring(7)}`;
-        //
-        //     dispatch(dronesHistoryActions.setActiveDrones({
-        //         droneId,
-        //         startPosition: [astanaLongitude, astanaLatitude],
-        //         placementTime: new Date().toLocaleTimeString(),
-        //     }));
-        //
-        //     map.addSource(droneId, {
-        //         'type': 'geojson',
-        //         'data': pointAroundAstana(0)
-        //     });
-        //
-        //     map.loadImage(drone, (error, image) => {
-        //         if (error)
-        //             throw error;
-        //         map.addImage(droneId, image);
-        //         map.addLayer({
-        //             'id': droneId,
-        //             'source': droneId,
-        //             'type': 'symbol',
-        //             'layout': {
-        //                 'icon-image': droneId,
-        //                 'icon-size': 0.5,
-        //             }
-        //         });
-        //     });
-        //
-        //     const animateMarker = (timestamp) => {
-        //         map.getSource(droneId)?.setData(pointAroundAstana(timestamp / 20000));
-        //
-        //         requestAnimationFrame(animateMarker);
-        //     }
-        //
-        //     animateMarker(0);
-        //
-        //     const randomTimeout = Math.random() * (30000 - 3000) + 3000;
-        //     setTimeout(() => {
-        //         const endDate = new Date();
-        //
-        //         dispatch(dronesHistoryActions.removeActiveDrone(droneId));
-        //         dispatch(dronesHistoryActions.setPastDrones({
-        //             droneId,
-        //             startPosition: [astanaLongitude, astanaLatitude],
-        //             placementTime: new Date().toLocaleTimeString(),
-        //         }));
-        //
-        //         map.removeLayer(droneId);
-        //         map.removeSource(droneId);
-        //
-        //         addDroneToMap(radius);
-        //     }, randomTimeout);
-        // };
-        //
-        //
-        // map.on('style.load', () => {
-        //
-        //     setInterval(() => {
-        //         addDroneToMap(Math.random() * (0.2 - 0.09) + 0.09);
-        //     }, Math.random() * (20000 - 5000) + 5000);
-        // })
-
-        // AddBlackDronesToMap(dispatch);
-
-        // AddWhiteDronesToMap(dispatch);
-
-        // const AddWhiteDronesToMap = () => {
-        //
-        //     const addDroneToMap = (radius) => {
-        //         const astanaLatitude = 51.122  + Math.random() * (51.148 - 51.122);
-        //         const astanaLongitude = 71.430 + Math.random() * (71.442 - 71.430);
-        //
-        //         const pointAroundAstana = (angle) => {
-        //             const newLatitude = astanaLatitude + Math.cos(angle) * radius;
-        //             const newLongitude = astanaLongitude + Math.sin(angle) * radius;
-        //
-        //             return {
-        //                 'type': 'Point',
-        //                 'coordinates': [newLongitude, newLatitude]
-        //             };
-        //         }
-        //
-        //         const droneId = `drone_${Math.random().toString(36).substring(7)}`;
-        //
-        //         const placementTime = new Date().toLocaleTimeString(); // Генерувати унікальний час розміщення
-        //
-        //         dispatch(dronesHistoryActions.setWhiteDrones({
-        //             type: 'white',
-        //             droneId,
-        //             startPosition: [astanaLongitude, astanaLatitude],
-        //             placementTime,
-        //         }));
-        //
-        //         map.addSource(droneId, {
-        //             'type': 'geojson',
-        //             'data': pointAroundAstana(0)
-        //         });
-        //
-        //         map.loadImage(whiteDrone, (error, image) => {
-        //             if (error)
-        //                 throw error;
-        //             map.addImage(droneId, image);
-        //             map.addLayer({
-        //                 'id': droneId,
-        //                 'source': droneId,
-        //                 'type': 'symbol',
-        //                 'layout': {
-        //                     'icon-image': droneId,
-        //                     'icon-size': 0.5,
-        //                 }
-        //             });
-        //         });
-        //
-        //         const animateMarker = (timestamp) => {
-        //             map.getSource(droneId)?.setData(pointAroundAstana(timestamp / 20000));
-        //
-        //             console.log(map.getSource(droneId))
-        //
-        //             requestAnimationFrame(animateMarker);
-        //         }
-        //
-        //         animateMarker(0);
-        //
-        //         const randomTimeout = Math.random() * (80000 - 40000) + 40000;
-        //         setTimeout(() => {
-        //             const endDate = new Date();
-        //
-        //             dispatch(dronesHistoryActions.removeWhiteDrones(droneId));
-        //             dispatch(dronesHistoryActions.setPastDrones({
-        //                 droneId,
-        //                 startPosition: [astanaLongitude, astanaLatitude],
-        //                 placementTime, // Використовувати той же час розміщення
-        //             }));
-        //
-        //             map.removeLayer(droneId);
-        //             map.removeSource(droneId);
-        //
-        //             addDroneToMap(radius);
-        //         }, randomTimeout);
-        //     };
-        //
-        //     map.on('style.load', () => {
-        //         setInterval(() => {
-        //             addDroneToMap(0.09);
-        //             // addDroneToMap(Math.random() * (0.2 - 0.09) + 0.09);
-        //         }, Math.random() * (20000 - 30000) + 30000);
-        //     });
-        // };
 
 
         const AddWhiteDronesToMap = () => {
