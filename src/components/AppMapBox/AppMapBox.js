@@ -48,10 +48,10 @@ const AppMapBox = () => {
         const map = new mapboxgl.Map({
             container: 'map',
             style: process.env.REACT_APP_MAPBOX_STYLE,
-            center: [54.429070, 24.414793],
-            // center: [71.413961, 51.140528],
-            zoom: 10.64,
-            // zoom: 10.28,
+            // center: [54.429070, 24.414793],
+            center: [71.413961, 51.140528],
+            // zoom: 10.64,
+            zoom: 10.28,
         });
 
         const markers = geoJson.features;
@@ -97,8 +97,11 @@ const AppMapBox = () => {
                 // center: [71.413961, 51.140528],
                 // center: [54.429070, 24.414793],
 
-                const astanaLatitude = 24.315 + Math.random() * (24.414 - 24.315); // В межах міста Астана
-                const astanaLongitude = 54.312 + Math.random() * (54.429 - 54.312); // В межах міста Астана
+                // const astanaLatitude = 24.315 + Math.random() * (24.414 - 24.315); // В межах міста абу дабі
+                // const astanaLongitude = 54.312 + Math.random() * (54.429 - 54.312); // В межах міста абу дабі
+
+                const astanaLatitude = 51.122 + Math.random() * (51.148 - 51.122); // В межах міста Астана
+                const astanaLongitude = 71.430 + Math.random() * (71.442 - 71.430); // В межах міста Астана
 
                 const radius = Math.random() * 0.15; // Встановіть власне значення
 
@@ -286,8 +289,12 @@ const AppMapBox = () => {
 
         const AddBlackDronesToMap = () => {
             const addDroneToMap = (radius) => {
-                const astanaLatitude = 24.315 + Math.random() * (24.414 - 24.315); // В межах міста Астана
-                const astanaLongitude = 54.312 + Math.random() * (54.429 - 54.312);
+                // const astanaLatitude = 24.315 + Math.random() * (24.414 - 24.315); // В межах міста абу дабі
+                // const astanaLongitude = 54.312 + Math.random() * (54.429 - 54.312); // В межах міста абу дабі
+
+                const astanaLatitude = 51.122 + Math.random() * (51.148 - 51.122); // В межах міста Астана
+                const astanaLongitude = 71.430 + Math.random() * (71.442 - 71.430); // В межах міста Астана
+
                 // const astanaLatitude = 51.122 + Math.random() * (51.148 - 51.122);
                 // const astanaLongitude = 71.430 + Math.random() * (71.442 - 71.430);
                 // const astanaLatitude = 51.1 + Math.random() * (51.25 - 51.1);
