@@ -12,6 +12,12 @@
   border-bottom: 1px solid var(--border-light);
   transition: 0.3s;
 
+  &.active {
+    background: var(--hover-lighblue);
+    border-left: 4px solid var(--accent-primary, #2563EB);
+    transition: 0.3s;
+  }
+
   &:hover {
     border-left: 4px solid var(--accent-primary, #2563EB);
     background: var(--hover-lighblue);

@@ -6,6 +6,7 @@ const initialState = {
     dronesHistory: [],
     whiteDrones: [],
     blackDrones: [],
+    selectedDroneId: null,
 }
 
 const dronesHistorySlice = createSlice({
@@ -38,6 +39,10 @@ const dronesHistorySlice = createSlice({
         addDroneToHistory: (state, action) => {
             state.dronesHistory.push(action.payload);
         },
+
+        setSelectedDroneId: (state, action) => {
+            state.selectedDroneId = action.payload;
+        }
     },
 });
 

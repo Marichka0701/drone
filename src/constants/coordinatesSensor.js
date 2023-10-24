@@ -1,8 +1,8 @@
 import {getRandomTime} from "./getRandomTime";
 import {getRandomDate} from "./getRandomDate";
 
-const latitude = 51.140528;
-const longitude = 71.413961;
+const latitude = 24.400745;
+const longitude = 54.382988;
 const numberOfPoints = 5;
 const maxOffset = 10 / 111.32; // Переведення градусів в кілометри (приблизно)
 
