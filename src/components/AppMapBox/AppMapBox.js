@@ -48,10 +48,12 @@ const AppMapBox = () => {
         const map = new mapboxgl.Map({
             container: 'map',
             style: process.env.REACT_APP_MAPBOX_STYLE,
-            // center: [54.429070, 24.414793],
-            center: [71.413961, 51.140528],
-            // zoom: 10.64,
-            zoom: 10.28,
+            // center: [54.429070, 24.414793], // абу дабі
+            center: [46.885250, 24.556808], // saudi
+            // center: [71.413961, 51.140528], // astana
+            // zoom: 10.64, // абу дабі
+            // zoom: 10.28, // astana
+            zoom: 10.85,
         });
 
         const markers = geoJson.features;
@@ -100,10 +102,13 @@ const AppMapBox = () => {
                 // const astanaLatitude = 24.315 + Math.random() * (24.414 - 24.315); // В межах міста абу дабі
                 // const astanaLongitude = 54.312 + Math.random() * (54.429 - 54.312); // В межах міста абу дабі
 
-                const astanaLatitude = 51.122 + Math.random() * (51.148 - 51.122); // В межах міста Астана
-                const astanaLongitude = 71.430 + Math.random() * (71.442 - 71.430); // В межах міста Астана
+                // const astanaLatitude = 51.122 + Math.random() * (51.148 - 51.122); // В межах міста Астана
+                // const astanaLongitude = 71.430 + Math.random() * (71.442 - 71.430); // В межах міста Астана
 
-                const radius = Math.random() * 0.15; // Встановіть власне значення
+                const astanaLatitude = 24.57 + Math.random() * (24.51 - 24.57); // В межах міста сауді
+                const astanaLongitude = 46.91 + Math.random() * (46.85 - 46.91); // В межах міста сауді
+
+                const radius = Math.random() * 0.11; // Встановіть власне значення
 
                 const pointAroundAstana = (angle) => {
                     const newLatitude = astanaLatitude + Math.cos(angle) * radius;
@@ -292,8 +297,11 @@ const AppMapBox = () => {
                 // const astanaLatitude = 24.315 + Math.random() * (24.414 - 24.315); // В межах міста абу дабі
                 // const astanaLongitude = 54.312 + Math.random() * (54.429 - 54.312); // В межах міста абу дабі
 
-                const astanaLatitude = 51.122 + Math.random() * (51.148 - 51.122); // В межах міста Астана
-                const astanaLongitude = 71.430 + Math.random() * (71.442 - 71.430); // В межах міста Астана
+                // const astanaLatitude = 51.122 + Math.random() * (51.148 - 51.122); // В межах міста Астана
+                // const astanaLongitude = 71.430 + Math.random() * (71.442 - 71.430); // В межах міста Астана
+
+                const astanaLatitude = 24.57 + Math.random() * (24.51 - 24.57); // В межах міста сауді
+                const astanaLongitude = 46.91 + Math.random() * (46.85 - 46.91); // В межах міста сауді
 
                 // const astanaLatitude = 51.122 + Math.random() * (51.148 - 51.122);
                 // const astanaLongitude = 71.430 + Math.random() * (71.442 - 71.430);
@@ -376,7 +384,7 @@ const AppMapBox = () => {
 
             map.on('style.load', () => {
                 setInterval(() => {
-                    addDroneToMap(Math.random() * (0.2 - 0.05) + 0.05);
+                    addDroneToMap(Math.random() * (0.1 - 0.05) + 0.05);
                 }, Math.random() * (80000 - 40000) + 40000);
             });
         };
